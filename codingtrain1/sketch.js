@@ -9,8 +9,9 @@ function draw() {
   rect(340, 250, 40, 150);
 
   // head
-  fill(0, 255, 0);
-  ellipse(360, 250 , 150, 150);
+  fill(0, 255, 0, 50);
+  noStroke();
+  ellipse(mouseX, mouseY , 50, 50);
 
   // eyes
   fill(0, 0, 255);
@@ -24,4 +25,9 @@ function draw() {
   // arms
   line(340, 325, 300, 360);
   line(380, 325, 420, 360);
+}
+
+// Event!
+function mousePressed() {
+  background(250);
 }
