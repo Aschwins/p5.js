@@ -3,6 +3,9 @@ function setup() {
   background(250);
 }
 
+// With color functions. one argument = greyscale, two arguments = greyscale + alpha,
+// three arguments = RGB, four arguments
+
 function draw() {
   // body
   fill(255, 0, 0);
@@ -10,11 +13,13 @@ function draw() {
 
   // head
   fill(0, 255, 0, 50);
-  noStroke();
+  noStroke(); // Stroke() and noStroke() show an outline
   ellipse(mouseX, mouseY , 50, 50);
 
   // eyes
-  fill(0, 0, 255);
+  fill(0, 0, 255); // fill() fills a shape noFill() doesn't fill
+  stroke(50);
+  strokeWeight(4); // outline will mean how many pixels the stroke is.
   ellipse(340, 220, 30, 30);
   ellipse(380, 220, 30, 30);
 
