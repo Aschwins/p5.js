@@ -1,6 +1,7 @@
 function setup() {
   createCanvas(720, 720);
   background(250);
+  print('Hello');
 }
 
 // With color functions. one argument = greyscale, two arguments = greyscale + alpha,
@@ -18,7 +19,7 @@ function draw() {
 
   // eyes
   fill(0, 0, 255); // fill() fills a shape noFill() doesn't fill
-  stroke(50);
+  stroke(0, 0 50);
   strokeWeight(4); // outline will mean how many pixels the stroke is.
   ellipse(340, 220, 30, 30);
   ellipse(380, 220, 30, 30);
