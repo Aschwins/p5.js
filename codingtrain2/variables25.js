@@ -1,3 +1,4 @@
+// We can create a javascript object variable, like so:
 var spot = {
   x: 100,
   y: 50
@@ -14,7 +15,9 @@ function setup() {
   background(0);
 };
 
+
 function draw() {
+  // We can use the random function to get a random number between (a, b)
   spot.x = random(0, width);
   spot.y = random(0, height);
   col.r = random(100, 255);
