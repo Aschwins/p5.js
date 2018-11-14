@@ -1,5 +1,5 @@
 // Default value in constructor.
-// Overlap
+// Overlapping function added
 
 // Create an array of bubbles.
 let bubbles = [];
@@ -7,10 +7,10 @@ let bubbles = [];
 function setup() {
 	createCanvas(600, 400);
 	// Create 10 random bubbles.
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 100; i++) {
 		let x = random(0, 600);
 		let y = random(0, 400);
-		let r = random(20, 80);
+		let r = random(10, 20);
 		b = new Bubble(x, y, r);
 		bubbles.push(b);
 	}
@@ -22,17 +22,20 @@ function draw() {
 
 	// Iterated over all drawn bubbles
 	for (let i = 0; i < bubbles.length; i++) {
-		// If mouse over bubble color grey else black.
-		if (bubbles[i].hover(mouseX, mouseY)) {
-			bubbles[i].changeColor(100);
-		} else {
-			bubbles[i].changeColor(0);
-		}
 		// Move and show the bubbles.
 		bubbles[i].show();
 		bubbles[i].move();
-	}
 
+		// If bubbles overlap change color
+		for (let j = 0; j < bubbles.length; j++) {
+			if (bubbles[i].intersects(bubbles[j])) {
+				bubbles[i].changeColor(150);
+				bubbles[j].changeColor(150);
+			} else {
+				bubbles[i].changeColor(0);
+			}
+		}
+	}
 }
 
 function mousePressed() {
