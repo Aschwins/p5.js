@@ -4,10 +4,11 @@ class Pipe {
     this.w = w;
     this.x = x;
     this.b = b;
+    this.red = 0;
   }
 
   show() {
-    fill(255);
+    fill(this.red, 100, 100);
     noStroke();
     // bottom pipe
     rect(this.x, this.m + (this.w / 2), this.b, height - this.m - this.w/2);
