@@ -8,11 +8,12 @@ class Pipe {
 
   show() {
     fill(255);
-    strokeWeight(4);
+    noStroke();
     // bottom pipe
     rect(this.x, this.m + (this.w / 2), this.b, height - this.m - this.w/2);
+
     // top pipe
-    rect(this.x, 0, this.b, height - this.m - this.w / 2);
+    rect(this.x, 0, this.b, this.m - this.w / 2);
   }
 
   move() {

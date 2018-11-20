@@ -20,9 +20,13 @@ function draw() {
 		pipes.push(p);
 	}
 
-	for (let i = 0; i < pipes.length - 1; i++){
+	for (let i = pipes.length - 1; i >=0 ; i--){
 		pipes[i].move()
 		pipes[i].show();
+
+		if (pipes[i].x < -pipes[i].b) {
+			pipes.splice(i, 1)
+		}
 	}
 
 }
