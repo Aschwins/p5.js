@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,26 +12,39 @@
 	<script src="libraries/p5.dom.js"></script>
 	<script src="libraries/p5.sound.js"></script>
 	<script src="sketch.js"></script>
-
+	
+	<!-- This is the CSS code -->
 	<style>
 		p {
 			color: white;
 			background: purple;
 			padding: 8px;
 		}
-	</style>
 
-	<style>
 		body {
-			margin:0;
-			padding:0;
+			margin: 0;
+			padding: 0;
 			overflow: hidden;
 		}
+
 		canvas {
-			margin:auto;
+			margin: auto;
+		}
+
+		#id1 {
+			font-size: 46pt;
+		}
+
+		.class1 {
+			font-size: 20pt;
+			background: blue;
 		}
 	</style>
 </head>
+
 <body>
+	<p id='id1' class='class1'>This is just an HTML paragraph with an id set to 1234 and a class set to class1</p>
+	<p class='class1'>This is a second paragraph with only a class.</p>
 </body>
+
 </html>
