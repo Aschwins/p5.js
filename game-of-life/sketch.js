@@ -55,6 +55,7 @@ function nextGen(currentgen) {
 					count += cg[i + i2][j + j2]
 				}
 			}
+			count -= cg[i][j];
 			if (cg[i][j] == 0 && count == 3) {
 				ng[i][j] = 1;
 			} else if (cg[i][j] == 1 && (count > 3 || count < 2)) {
@@ -64,3 +65,14 @@ function nextGen(currentgen) {
 	}
 	return ng;
 }
+
+function countNeighbours(grid, x, y) {
+	let sum = 0;
+	for (let i = -1; i < 2; i++) {
+		for (let j = 0; j < 2; j++){
+				sum += grid[x + i][y + i];
+			}
+		}
+		sum -= grid[i][j];
+		return sum;
+	}
