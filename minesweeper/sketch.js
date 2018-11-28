@@ -3,24 +3,48 @@ var rows = 10;
 var cols = 10;
 var w = 40;
 var grid;
+var n_bombs = 20;
 
 function setup() {
 	createCanvas(cols * w + 1, rows * w + 1);
 	background(255);
 	grid = create2Darray(cols, rows);
-	let bomb_init;
+
+	// Create a grid of minesweeper cells
 	for (i = 0; i < cols; i++) {
 		for (j = 0; j < rows; j++) {
-			let rng = floor(random(0, 3));
-			if (rng == 0 || rng == 1) {
-				bomb_init = false;
-			} else {
-				bomb_init = true;
-			}
-			grid[i][j] = new Cell(i, j, bomb_init, w);
+			grid[i][j] = new Cell(i, j, false, w);
 		}
 	}
 
+	// The variable which contains all the fields which are bombs
+	var used = [];
+
+	// Fill the grid randomly with bombs on spots which not yet contain bombs.
+	for (let i = 0; i < n_bombs; i++) {
+		// Pick a random bomb spot
+		let random_i = floor(random(0, cols));
+		let random_j = floor(random(0, rows));
+		
+		// Check if there is already a bomb there. 
+		//(We can probably improve this!! By checking with grid[random_i][random_j].bomb = true; i--) 
+		var new_ = 0;
+		for (let i = 0; i < used.length; i++) {
+			if (used[i][0] == random_i && used[i][1] == random_j) {
+				new_++
+			}
+		}
+		// If the location of the bomb is not already a bomb
+		if (new_ == 0){
+			grid[random_i][random_j].bomb = true
+		} else {
+			// Find a new location!
+			i--
+		}
+		used.push([random_i, random_j])
+	}
+
+	// Check how many bombs are around a cell
 	for (i=0; i < cols; i++) {
 		for (j=0; j < rows; j++) {
 			grid[i][j].countNeighbors();
@@ -28,72 +52,12 @@ function setup() {
 	}
 }
 
+// Draw the minesweeper cells
 function draw() {
 	for (i = 0; i < cols; i++) {
 		for (j = 0; j < rows; j++) {
 			grid[i][j].show()
 		}
-	}
-}
-
-class Cell {
-	constructor(x, y, bomb, w) {
-		this.i = i;
-		this.j = j;
-		this.x = i * w;
-		this.y = y * w;
-		this.w = w;
-		this.bomb = bomb;
-		this.revealed = false;
-		this.neighborCount = 0;
-	}
-
-	show() {
-		if (!this.revealed) {
-			fill(255);
-			rect(this.x, this.y, this.w, this.w);
-		} else {
-			if (this.bomb) {
-				fill(255, 0, 0);
-				ellipse(this.x + 0.5 * this.w, this.y + 0.5 * this.w, this.w / 2);
-			} else {
-				fill(200);
-				rect(this.x, this.y, this.w, this.w)
-				textAlign(CENTER);
-				textSize(20);
-				fill(0);
-				text(this.neighborCount, this.x + 0.5 * w, this.y + 0.5 * w + 6);
-			}
-		}
-	}
-
-	reveal() {
-		this.revealed = true;
-	}
-
-	contains(pointx, pointy) {
-		return ((pointx > this.x) && (pointx < this.x + this.w) && (pointy > this.y) && (pointy < this.y + this.w));
-	}
-
-	countNeighbors() {
-		var total = 0;
-		if (this.bomb) {
-			total = -1;
-		} else {
-			for (let ioff = -1; ioff < 2; ioff++) {
-				for (let joff = -1; joff < 2; joff++) {
-					let i = this.i + ioff;
-					let j = this.j + joff;
-					if (((i > -1) && (i < cols) && (j > -1) && (j < rows))) {
-						var neighbor =  grid[i][j];
-						if (neighbor.bomb) {
-							total++
-						}
-					}
-				}
-			}
-		}
-		this.neighborCount = total;
 	}
 }
 
