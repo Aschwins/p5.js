@@ -25,7 +25,7 @@ function setup() {
 		// Pick a random bomb spot
 		let random_i = floor(random(0, cols));
 		let random_j = floor(random(0, rows));
-		
+
 		// Check if there is already a bomb there. 
 		//(We can probably improve this!! By checking with grid[random_i][random_j].bomb = true; i--) 
 		var new_ = 0;
@@ -35,7 +35,7 @@ function setup() {
 			}
 		}
 		// If the location of the bomb is not already a bomb
-		if (new_ == 0){
+		if (new_ == 0) {
 			grid[random_i][random_j].bomb = true
 		} else {
 			// Find a new location!
@@ -45,8 +45,8 @@ function setup() {
 	}
 
 	// Check how many bombs are around a cell
-	for (i=0; i < cols; i++) {
-		for (j=0; j < rows; j++) {
+	for (i = 0; i < cols; i++) {
+		for (j = 0; j < rows; j++) {
 			grid[i][j].countNeighbors();
 		}
 	}
@@ -73,10 +73,18 @@ function create2Darray(n_rows, m_cols) {
 // If we press the mouse in a cell, reveal the cell.
 function mousePressed() {
 	for (i = 0; i < cols; i++) {
-		for (j=0; j < rows; j++) {
+		for (j = 0; j < rows; j++) {
 			if (grid[i][j].contains(mouseX, mouseY)) {
 				grid[i][j].reveal()
 			}
+		}
+	}
+}
+
+function revealAll() {
+	for (i = 0; i < cols; i++) {
+		for (j = 0; j < rows; j++) {
+			grid[i][j].revealed = true;
 		}
 	}
 }
