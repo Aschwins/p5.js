@@ -79,14 +79,27 @@ function create2Darray(n_rows, m_cols) {
 
 // If we press the mouse in a cell, reveal the cell.
 function mousePressed() {
-	for (i = 0; i < cols; i++) {
-		for (j = 0; j < rows; j++) {
-			if (grid[i][j].contains(mouseX, mouseY)) {
-				grid[i][j].reveal()
+	if (mouseButton == LEFT) {
+		for (i = 0; i < cols; i++) {
+			for (j = 0; j < rows; j++) {
+				if (grid[i][j].contains(mouseX, mouseY)) {
+					grid[i][j].reveal()
+				}
+			}
+		}
+	}
+	if (mouseButton == RIGHT) {
+		for (i = 0; i < cols; i++) {
+			for (j = 0; j < rows; j++) {
+				if (grid[i][j].contains(mouseX, mouseY)) {
+					console.log("click");
+					grid[i][j].mark = !grid[i][j].mark;
+				}
 			}
 		}
 	}
 }
+
 
 function revealAll() {
 	for (i = 0; i < cols; i++) {
@@ -101,7 +114,7 @@ function gameFinished() {
 	for (i = 0; i < cols; i++) {
 		for (j = 0; j < rows; j++) {
 			if ((!grid[i][j].revealed) || (grid[i][j].bomb)) {
-				count ++
+				count++
 			}
 		}
 	}
@@ -111,7 +124,3 @@ function gameFinished() {
 		game_won = true;
 	}
 }
-
-// if (mouseButton == RIGHT ) {
-// 	background(random(180,255),random(180,255),random(180,255));
-// 	}

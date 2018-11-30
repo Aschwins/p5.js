@@ -8,12 +8,24 @@ class Cell {
     this.bomb = bomb;
     this.revealed = false;
     this.neighborCount = 0;
+    this.mark = false;
   }
 
   show() {
     if (!this.revealed) {
-      fill(255);
-      rect(this.x, this.y, this.w, this.w);
+      if (this.mark) {
+        strokeWeight(1);
+        fill(255, 0, 0);
+        triangle(this.x + 0.5 * this.w, this.y + 0.25 * w, this.x + 0.3 * this.w, this.y + 0.4 * this.w, this.x + 0.5 * this.w, this.y + 0.4 * this.w)
+        strokeWeight(3);
+        line(this.x + 0.5 * this.w, this.y + 0.25 * this.w, this.x + 0.5 * this.w, this.y + 0.75 * this.w);
+        line(this.x + 0.4 * this.w, this.y + 0.75 * this.w, this.x + 0.6*this.w, this.y + 0.75 * this.w);
+        strokeWeight(1);
+      } else {
+        strokeWeight(1);
+        fill(255);
+        rect(this.x, this.y, this.w, this.w);
+      }
     } else {
       if (this.bomb) {
         fill(100);
