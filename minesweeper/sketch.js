@@ -3,7 +3,8 @@ var rows = 10;
 var cols = 10;
 var w = 40;
 var grid;
-var n_bombs = 20;
+var n_bombs = 10;
+var game_won = false;
 
 function setup() {
 	createCanvas(cols * w + 1, rows * w + 1);
@@ -59,6 +60,12 @@ function draw() {
 			grid[i][j].show()
 		}
 	}
+	if (game_won) {
+		background(255);
+		textSize(20);
+		fill(255, 0, 0);
+		text("LEKKER GEDAAN MAAT, POTVERDIKKIE!!!!", 200, 100);
+	}
 }
 
 // This functions generates a new array with 
@@ -88,3 +95,23 @@ function revealAll() {
 		}
 	}
 }
+
+function gameFinished() {
+	var count = 0;
+	for (i = 0; i < cols; i++) {
+		for (j = 0; j < rows; j++) {
+			if ((!grid[i][j].revealed) || (grid[i][j].bomb)) {
+				count ++
+			}
+		}
+	}
+	console.log(count);
+	if (count <= n_bombs) {
+		console.log("GEWONNNENENENNENENE");
+		game_won = true;
+	}
+}
+
+// if (mouseButton == RIGHT ) {
+// 	background(random(180,255),random(180,255),random(180,255));
+// 	}

@@ -33,6 +33,7 @@ class Cell {
 
   reveal() {
     this.revealed = true;
+    gameFinished();
     if (this.bomb) {
       revealAll();
     } else if (this.neighborCount == 0) {
