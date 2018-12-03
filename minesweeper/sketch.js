@@ -3,7 +3,7 @@ var rows = 10;
 var cols = 10;
 var w = 40;
 var grid;
-var n_bombs = 10;
+var n_bombs = 20;
 var game_won = false;
 
 function setup() {
