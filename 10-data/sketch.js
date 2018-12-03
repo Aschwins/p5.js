@@ -1,16 +1,29 @@
+// Use the preload function to
+
 function preload() {
-	flower = loadJSON("flower.json");
+	// flower = loadJSON("flower.json");
+	data = loadJSON("birds.json")
 }
 
 
 
 function setup() {
-	createCanvas(400, 400);
+	noCanvas();
+	var birds = data.birds
+	//createP(bird);
+	for (i=0; i < birds.length; i++) {
+		var family = birds[i].family
+		createElement('h1', family);
+		for (j = 0; j < birds[i].members.length; j++) {
+			var member = birds[i].members[j];
+			createP(member);
+		}
+	}
 	
+	fill(100);
 }
 
 function draw() {
-	background(0);
-	fill(flower.r, flower.g, flower.b);
-	text(flower.name, 10, 50);
+	
 }
+
