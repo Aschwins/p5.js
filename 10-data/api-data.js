@@ -13,7 +13,7 @@ function gotData(data) {
 
 function loadData() {
   var url = base_url + '&' + api_key + '&q=' + input.value();
-  loadJSON(url, gotData);
+  loadJSON(url, gotData, 'jsonp');
 }
 
 function draw() {
