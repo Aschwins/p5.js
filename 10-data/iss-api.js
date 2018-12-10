@@ -62,8 +62,6 @@ class spaceStation {
   }
 }
 
-
-
 setInterval(loadData, 10000);
 
 //[Log] {message: "success", timestamp: 1544172735, iss_position: {latitude: "-44.0984", longitude: "-103.3333"}} (iss-api.js, line 35)
